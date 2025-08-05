@@ -9,6 +9,11 @@ SmoothedValue::SmoothedValue(float alpha, unsigned long minInterval, float minCh
 }
 
 float SmoothedValue::update(float newValue) {
+    if(step > 1)
+    {
+        //newValue = round(newValue / step) * step;
+    }
+
     if (!initialized) {
         smoothedValue = newValue;
         lastOutput = newValue;

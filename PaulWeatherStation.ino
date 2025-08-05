@@ -81,8 +81,8 @@ SmoothedValue TempSmt(BME280_SMOOTH, 0, 0.1);
 SmoothedValue HumiSmt(BME280_SMOOTH, 0, 1);
 SmoothedValue PresSmt(BME280_SMOOTH, 0, 1);
 
-SmoothedValue CO2Smt(CCS811_SMOOTH, 0, 1);
-SmoothedValue TVOCSmt(CCS811_SMOOTH, 0, 1);
+SmoothedValue CO2Smt(CCS811_SMOOTH, 0, 100);
+SmoothedValue TVOCSmt(CCS811_SMOOTH, 0, 10);
 
 // автоматическая яркость подсветки
 SmoothPWM smoothPWM(BL_PIN, BL_SMOOTH, BL_MIN, BL_MAX);
@@ -341,7 +341,7 @@ void loop()
 
   strip.fill(0);
 
-  float level_max = pow(max(CO2_level, TVOC_level), 0.6);
+  float level_max = pow(max(CO2_level, TVOC_level), 0.7);
   uint16_t pixelHue = (0.33333 - level_max * 0.33333) * 65536L;
   auto color = strip.gamma32(strip.ColorHSV(pixelHue));
   
