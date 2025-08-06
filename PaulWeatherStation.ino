@@ -25,7 +25,7 @@ DFRobot_CCS811 CCS811;
 // 2473
 // c474
 // a474
-#define CCS811_BASELINE 0xc474
+#define CCS811_BASELINE 0xa474
 // сглаживание значений для этого датчика, чем ближе к 0 тем сильнее сглаживание, 1 - нет сглаживания
 #define CCS811_SMOOTH 1
 
