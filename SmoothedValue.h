@@ -3,7 +3,7 @@
 
 class SmoothedValue {
 public:
-    SmoothedValue(float alpha, unsigned long minInterval = 0, float minChangeDelta = 0);
+    SmoothedValue(float alpha, unsigned long minInterval = 0, float minChangeDelta = 0, unsigned long accuracyUpdateInterval = 0);
     float update(float newValue);
 
 private:
@@ -13,6 +13,7 @@ private:
     float lastOutput;
     unsigned long minInterval;
     unsigned long lastChangeTime;
+    unsigned long accuracyUpdateInterval;
     bool initialized;
 };
 

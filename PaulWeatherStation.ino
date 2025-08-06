@@ -23,7 +23,9 @@ DFRobot_CCS811 CCS811;
 // значения до этой строки были получены без учета при калибровке значений температуры и влажности, теперь они учитываются
 // 5470
 // 2473
-#define CCS811_BASELINE 0x2473
+// c474
+// a474
+#define CCS811_BASELINE 0xc474
 // сглаживание значений для этого датчика, чем ближе к 0 тем сильнее сглаживание, 1 - нет сглаживания
 #define CCS811_SMOOTH 1
 
@@ -81,8 +83,8 @@ SmoothedValue TempSmt(BME280_SMOOTH, 0, 0.1);
 SmoothedValue HumiSmt(BME280_SMOOTH, 0, 1);
 SmoothedValue PresSmt(BME280_SMOOTH, 0, 1);
 
-SmoothedValue CO2Smt(CCS811_SMOOTH, 0, 100);
-SmoothedValue TVOCSmt(CCS811_SMOOTH, 0, 10);
+SmoothedValue CO2Smt(CCS811_SMOOTH, 0, 100, 60000);
+SmoothedValue TVOCSmt(CCS811_SMOOTH, 0, 10, 60000);
 
 // автоматическая яркость подсветки
 SmoothPWM smoothPWM(BL_PIN, BL_SMOOTH, BL_MIN, BL_MAX);

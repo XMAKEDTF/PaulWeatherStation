@@ -2,9 +2,9 @@
 #include <math.h>
 #include <Arduino.h>
 
-SmoothedValue::SmoothedValue(float alpha, unsigned long minInterval, float minChangeDelta)
+SmoothedValue::SmoothedValue(float alpha, unsigned long minInterval, float minChangeDelta, unsigned long accuracyUpdateInterval)
     : alpha(alpha), minInterval(minInterval),
-      step(minChangeDelta), initialized(false) {
+      step(minChangeDelta), initialized(false), accuracyUpdateInterval(accuracyUpdateInterval) {
   lastChangeTime = 0;
 }
 
@@ -25,7 +25,7 @@ float SmoothedValue::update(float newValue) {
     smoothedValue = alpha * newValue + (1 - alpha) * smoothedValue;
     float rounded = smoothedValue;
 
-    if (fabs(rounded - lastOutput) >= step) {
+    if (fabs(rounded - lastOutput) >= step || (accuracyUpdateInterval > 0 && (millis() - lastChangeTime) > accuracyUpdateInterval)) {
         unsigned long currentTime = millis();
         if (currentTime - lastChangeTime >= minInterval) {
             lastOutput = rounded;
